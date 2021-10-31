@@ -1,7 +1,10 @@
 const express = require('express');
-const mongoose = require('mongoose');
+const loaders=require('./loaders');
+const {PagesRoute}=require('./routes/index')
 
 
+//mongoDB connection
+loaders()
 
 const app = express();
 
@@ -10,11 +13,9 @@ app.set('view engine', 'ejs');
 app.use(express.static("public"));
 
 
-app.get("/", (req, res) => {
-    res.render('index')
-})
 
-
+//routers
+app.use('/',PagesRoute);
 
 
 const port =  process.env.PORT || 3000
