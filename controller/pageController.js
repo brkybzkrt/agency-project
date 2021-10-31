@@ -1,11 +1,12 @@
-const Portfolio=require("../models/Portfolio")
+const Portfolio=require('../models/Portfolio');
+
 exports.getIndexPage = (req, res) => {
-
-
   res.status(200).render('index', { page_name: 'index' });
 };
-exports.getPortfolioPage = (req, res) => {
-  res.status(200).render('portfolio', { page_name: 'portfolio' });
+
+exports.getPortfolioPage = async (req, res) => {
+  const portfolios= await Portfolio.find({}).sort({createdAt:-1})
+  res.status(200).render('portfolio', { page_name: 'portfolio',portfolios });
 };
 
 exports.getServicePage = (req, res) => {
@@ -19,5 +20,6 @@ exports.getTeamPage = (req, res) => {
 exports.getAboutPage = (req, res) => {
   res.status(200).render('about', { page_name: 'about' });
 };
+
 
 
