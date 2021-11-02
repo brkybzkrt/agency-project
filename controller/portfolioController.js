@@ -12,7 +12,12 @@ await Portfolio.create({title,sub_title}).then(()=>{
 }
 
 exports.editPortfolio=async(req, res) => {
-
-
+    const _id = req.params.id;
+    const {title,sub_title} = req.body;
+    const portfolio= await Portfolio.findOne({_id});
+    portfolio.title=title;
+    portfolio.sub_title=sub_title;
+    await portfolio.save();
     
+    res.status(200).redirect('/portfolio');
 }

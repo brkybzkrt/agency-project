@@ -1,6 +1,9 @@
 const express = require('express');
+const methodOverride = require('method-override');
+
 const loaders=require('./loaders');
 const {PagesRoute,PortfolioRoute}=require('./routes/index')
+
 
 
 //mongoDB connection
@@ -14,7 +17,7 @@ app.use(express.json());
 app.set('view engine', 'ejs');
 
 app.use(express.static("public"));
-
+app.use(methodOverride('_method',{methods:["POST","GET"]}));
 
 
 //routers

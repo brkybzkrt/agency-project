@@ -7,7 +7,7 @@ const router=express.Router();
 
 router.route('/create').post(createPortfolio);
 
-router.route('/edit').put(editPortfolio);
+router.route('/edit/:id').put(editPortfolio);
 
 
 module.exports=router;

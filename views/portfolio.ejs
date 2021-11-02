@@ -26,12 +26,49 @@
                         <div class="portfolio-caption-heading"><%= portfolios[i].title%></div>
                         <div class="portfolio-caption-subheading text-muted"><%= portfolios[i].sub_title%></div>
                         <div class="d-flex justify-content-start">
-                            <button class="btn btn-primary">Update</button>
+                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#portfolioUpdate<%= portfolios[i].title%>">Update</button>
                         </div>
                     </div>
                     
                 </div>
-                
+                <!-- update modal -->
+                <div class="modal fade" id="portfolioUpdate<%= portfolios[i].title%>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">Update A Portfolio</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                          <form action="/portfolio/edit/<%= portfolios[i]._id%>?_method=PUT" method="post">
+                            <div class="form-group">
+                                <div class="col-sm-12 mb-2">
+                                    <input type="text" name="title" class="form-control" value="<%= portfolios[i].title%>"   placeholder="Title">
+                                </div>
+                                
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-12 mb-2">
+                                    <input type="text" name="sub_title" class="form-control" value="<%= portfolios[i].sub_title%>"  placeholder="SubTitle">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-10">
+                                    <button type="submit" class="btn btn-warning" onclick="return confirm('Are You Sure To Update')">
+                                        Update
+                                    </button>
+                                    
+                                </div>
+                            </div>
+                          </form>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                         
+                        </div>
+                      </div>
+                    </div>
+                  </div>
             </div>
             <%}%>
         </div>
@@ -39,7 +76,7 @@
     </div>
 </section>
 
-<!-- Button trigger modal -->
+
 
   
   <!-- Modal -->
